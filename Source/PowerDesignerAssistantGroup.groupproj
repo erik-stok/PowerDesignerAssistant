@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3ACA43C7-6B22-4F8E-9A31-C754B63FC6BB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="KeyboardHook.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PowerdesignerAssistant.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="KeyboardHook">
+        <MSBuild Projects="KeyboardHook.dproj"/>
+    </Target>
+    <Target Name="KeyboardHook:Clean">
+        <MSBuild Projects="KeyboardHook.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="KeyboardHook:Make">
+        <MSBuild Projects="KeyboardHook.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PowerdesignerAssistant">
+        <MSBuild Projects="PowerdesignerAssistant.dproj"/>
+    </Target>
+    <Target Name="PowerdesignerAssistant:Clean">
+        <MSBuild Projects="PowerdesignerAssistant.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PowerdesignerAssistant:Make">
+        <MSBuild Projects="PowerdesignerAssistant.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="KeyboardHook;PowerdesignerAssistant"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="KeyboardHook:Clean;PowerdesignerAssistant:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="KeyboardHook:Make;PowerdesignerAssistant:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
